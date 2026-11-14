@@ -37,7 +37,7 @@
 ---
 
 Markdown
-## ⚙️ Instruções de Instalação e Execução
+## Instruções de Instalação e Execução
 
 ### 1. Pré-requisitos
 * **Java JDK** (versão 8 ou superior) instalado.
