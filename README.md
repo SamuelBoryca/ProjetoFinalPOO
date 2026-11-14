@@ -89,3 +89,15 @@ Navegue até a pasta view do projeto onde o arquivo MenuPrincipal.html está loc
 Dê um duplo clique no arquivo MenuPrincipal.html (ou clique com o botão direito e escolha Abrir com o seu navegador web favorito, como Google Chrome, Edge ou Firefox).
 
 O painel visual em formato de console web será aberto, permitindo que você gerencie vendedores, cadastre produtos vinculados e consulte relacionamentos instantaneamente.
+
+## Transparência de IA!
+
+Para a realização do projeto de forma eficiente, ferramentas de IA foram utilizadas em duas formas:
+
+### 1. Passo a passo detalhado:
+Um prompt bem detalhado com os objetivos principais do trabalho e ferramentas a serem utilizadas gerou
+um guia para construir o projeto em etapas.
+
+### 2. Códigos em JAVA:
+Usando o projeto apresentado pelo professor em aula, foi criado um modelo para construir os códigos utilizando IA.
+Foram feitas alterações nos códigos gerados para concertar erros.
