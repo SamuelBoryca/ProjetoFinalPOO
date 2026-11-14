@@ -37,3 +37,55 @@
 * **Arquitetura e Padrões:** POO, MVC (Model-View-Controller) e DAO (Data Access Object)
 
 ---
+
+Markdown
+## ⚙️ Instruções de Instalação e Execução
+
+### 1. Pré-requisitos
+* **Java JDK** (versão 8 ou superior) instalado.
+* **MySQL Server** instalado e em execução.
+* Uma IDE Java de sua preferência (IntelliJ IDEA, Eclipse ou NetBeans).
+
+---
+
+### 2. Configuração do Banco de Dados
+Abra o seu gerenciador MySQL (MySQL Workbench, DBeaver ou terminal) e execute o script SQL abaixo para criar o banco de dados e as tabelas:
+
+```sql
+CREATE DATABASE MarketPlace;
+USE MarketPlace;
+
+CREATE TABLE vendedor (
+    id_vendedor INT PRIMARY KEY,
+    nome_vendedor VARCHAR(50),
+    avaliacao INT
+);
+
+CREATE TABLE produto (
+    id_produto INT PRIMARY KEY,
+    nome_produto VARCHAR(50),
+    quantidade INT,
+    preco DECIMAL(10,2),
+    id_vendedor INT,
+    CONSTRAINT fk_produto_vendedor FOREIGN KEY (id_vendedor) REFERENCES vendedor(id_vendedor)
+);
+3. Configuração do Projeto Java & DAO
+Baixe ou clone este repositório em sua máquina.
+
+Abra o projeto na sua IDE.
+
+Adicione o driver MySQL Connector/J (.jar) às bibliotecas (Libraries / Build Path) do seu projeto.
+
+Abra o arquivo src/dao/ConexaoDB.java e atualize o usuário e a senha para corresponderem às credenciais do seu MySQL local:
+
+Java
+private static final String USUARIO = "seu_usuario"; // ex: root
+private static final String SENHA = "sua_senha";     // ex: sua senha
+4. Executando a Interface Web
+Como o projeto utiliza uma interface web interativa em HTML para testar o fluxo do sistema sem complicações visuais:
+
+Navegue até a pasta view do projeto onde o arquivo MenuPrincipal.html está localizado.
+
+Dê um duplo clique no arquivo MenuPrincipal.html (ou clique com o botão direito e escolha Abrir com o seu navegador web favorito, como Google Chrome, Edge ou Firefox).
+
+O painel visual em formato de console web será aberto, permitindo que você gerencie vendedores, cadastre produtos vinculados e consulte relacionamentos instantaneamente.
