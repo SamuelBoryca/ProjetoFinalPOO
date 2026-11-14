@@ -6,8 +6,6 @@
 
 ## Autor: Samuel Rodrigues Boryça
 
----
-
 ## Screenshots
 
 <img width="916" height="422" alt="{CE53EB42-D164-4876-9208-117C329FA8D7}" src="https://github.com/user-attachments/assets/b47be37c-bc85-4f2d-80d4-ec8e5cddd263" />
@@ -69,6 +67,8 @@ CREATE TABLE produto (
     id_vendedor INT,
     CONSTRAINT fk_produto_vendedor FOREIGN KEY (id_vendedor) REFERENCES vendedor(id_vendedor)
 );
+```
+
 3. Configuração do Projeto Java & DAO
 Baixe ou clone este repositório em sua máquina.
 
