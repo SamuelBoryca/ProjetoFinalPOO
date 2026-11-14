@@ -69,7 +69,7 @@ CREATE TABLE produto (
 );
 ```
 
-3. Configuração do Projeto Java & DAO
+### 3. Configuração do Projeto Java & DAO
 Baixe ou clone este repositório em sua máquina.
 
 Abra o projeto na sua IDE.
