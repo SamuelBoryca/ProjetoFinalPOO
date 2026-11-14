@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketPlace - Menu Principal (Web Console)</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --accent-cyan: #58a6ff;
+            --accent-green: #2ea043;
+            --accent-red: #da3633;
+            --accent-purple: #bc8cff;
+            --font-code: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-code);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        header {
+            background: #21262d;
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.2rem;
+            color: var(--accent-purple);
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #111418;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-family: var(--font-code);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn:hover {
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-cyan);
+            border-bottom: 2px solid var(--accent-cyan);
+            background: var(--panel-bg);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            color: #8b949e;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-family: var(--font-code);
+            border-radius: 4px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button.action-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-family: var(--font-code);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-primary { background: var(--accent-cyan); color: #0d1117; }
+        .btn-success { background: var(--accent-green); color: #fff; }
+        .btn-danger { background: var(--accent-red); color: #fff; }
+        .btn-secondary { background: #30363d; color: var(--text-main); }
+
+        button.action-btn:hover {
+            opacity: 0.85;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #21262d;
+            color: var(--accent-cyan);
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .console-log {
+            margin-top: 15px;
+            padding: 10px;
+            background: #000;
+            border: 1px dashed var(--border-color);
+            font-size: 0.85rem;
+            min-height: 40px;
+            color: var(--accent-green);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>> MARKETPLACE // CONSOLE_VIEW</h1>
+        <span style="font-size: 0.8rem; color: #8b949e;">MVC ARCHITECTURE</span>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab(event, 'vendedores')">[1] Vendedores</button>
+        <button class="tab-btn" onclick="switchTab(event, 'produtos')">[2] Produtos</button>
+        <button class="tab-btn" onclick="switchTab(event, 'relacionamentos')">[3] Relacionamentos</button>
+    </div>
+
+    <!-- ABA 1: VENDEDORES -->
+    <div id="vendedores" class="tab-content active">
+        <h2>Gerenciamento de Vendedores</h2>
+        <div class="form-group">
+            <label>ID do Vendedor:</label>
+            <input type="number" id="vId" placeholder="Ex: 1">
+        </div>
+        <div class="form-group">
+            <label>Nome do Vendedor:</label>
+            <input type="text" id="vNome" placeholder="Ex: Ana Souza">
+        </div>
+        <div class="form-group">
+            <label>Avaliação (0 a 5):</label>
+            <input type="number" id="vAvaliacao" min="0" max="5" placeholder="Ex: 5">
+        </div>
+
+        <div class="btn-group">
+            <button class="action-btn btn-success" onclick="cadastrarVendedor()">Cadastrar</button>
+            <button class="action-btn btn-primary" onclick="atualizarVendedor()">Atualizar</button>
+            <button class="action-btn btn-danger" onclick="excluirVendedor()">Excluir</button>
+            <button class="action-btn btn-secondary" onclick="limparVendedor()">Limpar</button>
+        </div>
+
+        <div id="logVendedor" class="console-log">> Sistema pronto para gerenciar vendedores.</div>
+
+        <table id="tabelaVendedores">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Avaliação</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Dados carregados via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ABA 2: PRODUTOS -->
+    <div id="produtos" class="tab-content">
+        <h2>Cadastro de Produtos (Vinculado a Vendedor)</h2>
+        <div class="form-group">
+            <label>ID do Produto:</label>
+            <input type="number" id="pId" placeholder="Ex: 101">
+        </div>
+        <div class="form-group">
+            <label>Nome do Produto:</label>
+            <input type="text" id="pNome" placeholder="Ex: Mouse Gamer">
+        </div>
+        <div class="form-group">
+            <label>Quantidade em Estoque:</label>
+            <input type="number" id="pQtd" placeholder="Ex: 15">
+        </div>
+        <div class="form-group">
+            <label>Preço (R$):</label>
+            <input type="text" id="pPreco" placeholder="Ex: 150.00">
+        </div>
+        <div class="form-group">
+            <label>ID do Vendedor Responsável:</label>
+            <input type="number" id="pIdVendedor" placeholder="Ex: 1">
+        </div>
+
+        <div class="btn-group">
+            <button class="action-btn btn-success" onclick="cadastrarProduto()">Cadastrar Produto</button>
+            <button class="action-btn btn-secondary" onclick="limparProduto()">Limpar</button>
+        </div>
+
+        <div id="logProduto" class="console-log">> Aguardando cadastro de produtos.</div>
+    </div>
+
+    <!-- ABA 3: RELACIONAMENTOS -->
+    <div id="relacionamentos" class="tab-content">
+        <h2>Consulta: Produtos por Vendedor</h2>
+        <div class="form-group">
+            <label>Informe o ID do Vendedor:</label>
+            <input type="number" id="rIdVendedor" placeholder="Ex: 1">
+        </div>
+        <button class="action-btn btn-primary" onclick="consultarRelacionamento()">Buscar Produtos Vinculados</button>
+
+        <table id="tabelaRelacionamento" style="margin-top: 20px;">
+            <thead>
+            <tr>
+                <th>ID Produto</th>
+                <th>Nome do Produto</th>
+                <th>Qtd</th>
+                <th>Preço (R$)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Resultados da busca -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Simulação de banco de dados em memória local (para testes web)
+    let dbVendedores = [
+        { id: 1, nome: "Carlos Silva", avaliacao: 5 },
+        { id: 2, nome: "Mariana Costa", avaliacao: 4 }
+    ];
+
+    let dbProdutos = [
+        { id: 101, nome: "Teclado Mecânico", qtd: 10, preco: 250.00, idVendedor: 1 },
+        { id: 102, nome: "Monitor Ultrawide", qtd: 5, preco: 1200.00, idVendedor: 1 },
+        { id: 103, nome: "Headset Gamer", qtd: 8, preco: 199.90, idVendedor: 2 }
+    ];
+
+    function switchTab(evt, tabName) {
+        let contents = document.getElementsByClassName("tab-content");
+        for (let c of contents) c.classList.remove("active");
+
+        let buttons = document.getElementsByClassName("tab-btn");
+        for (let b of buttons) b.classList.remove("active");
+
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+
+        if(tabName === 'vendedores') atualizarTabelaVendedoresUI();
+    }
+
+    // --- LÓGICA VENDEDORES ---
+    function atualizarTabelaVendedoresUI() {
+        let tbody = document.querySelector("#tabelaVendedores tbody");
+        tbody.innerHTML = "";
+        dbVendedores.forEach(v => {
+            let row = `<tr><td>${v.id}</td><td>${v.nome}</td><td>${v.avaliacao}</td></tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function cadastrarVendedor() {
+        let id = parseInt(document.getElementById("vId").value);
+        let nome = document.getElementById("vNome").value;
+        let avaliacao = parseInt(document.getElementById("vAvaliacao").value);
+
+        if(!id || !nome || isNaN(avaliacao)) {
+            document.getElementById("logVendedor").innerHTML = "> [Erro] Preencha todos os campos corretamente.";
+            return;
+        }
+
+        dbVendedores.push({ id, nome, avaliacao });
+        atualizarTabelaVendedoresUI();
+        document.getElementById("logVendedor").innerHTML = `> [Sucesso] Vendedor ${nome} cadastrado com sucesso!`;
+        limparVendedor();
+    }
+
+    function atualizarVendedor() {
+        let id = parseInt(document.getElementById("vId").value);
+        let nome = document.getElementById("vNome").value;
+        let avaliacao = parseInt(document.getElementById("vAvaliacao").value);
+
+        let v = dbVendedores.find(item => item.id === id);
+        if(v) {
+            v.nome = nome;
+            v.avaliacao = avaliacao;
+            atualizarTabelaVendedoresUI();
+            document.getElementById("logVendedor").innerHTML = `> [Sucesso] Vendedor ID ${id} atualizado.`;
+        } else {
+            document.getElementById("logVendedor").innerHTML = `> [Erro] Vendedor com ID ${id} não encontrado.`;
+        }
+    }
+
+    function excluirVendedor() {
+        let id = parseInt(document.getElementById("vId").value);
+        let index = dbVendedores.findIndex(item => item.id === id);
+        if(index !== -1) {
+            dbVendedores.splice(index, 1);
+            atualizarTabelaVendedoresUI();
+            document.getElementById("logVendedor").innerHTML = `> [Sucesso] Vendedor ID ${id} excluído.`;
+        } else {
+            document.getElementById("logVendedor").innerHTML = `> [Erro] Vendedor não encontrado.`;
+        }
+    }
+
+    function limparVendedor() {
+        document.getElementById("vId").value = "";
+        document.getElementById("vNome").value = "";
+        document.getElementById("vAvaliacao").value = "";
+    }
+
+    // --- LÓGICA PRODUTOS ---
+    function cadastrarProduto() {
+        let id = parseInt(document.getElementById("pId").value);
+        let nome = document.getElementById("pNome").value;
+        let qtd = parseInt(document.getElementById("pQtd").value);
+        let preco = parseFloat(document.getElementById("pPreco").value);
+        let idVendedor = parseInt(document.getElementById("pIdIdVendedor") ? document.getElementById("pIdIdVendedor").value : document.getElementById("pIdVendedor").value);
+
+        let vendedorExiste = dbVendedores.some(v => v.id === idVendedor);
+        if(!vendedorExiste) {
+            document.getElementById("logProduto").innerHTML = `> [Erro] Vendedor ID ${idVendedor} não existe! Cadastre-o primeiro.`;
+            return;
+        }
+
+        dbProdutos.push({ id, nome, qtd, preco, idVendedor });
+        document.getElementById("logProduto").innerHTML = `> [Sucesso] Produto ${nome} vinculado ao Vendedor ID ${idVendedor}!`;
+        limparProduto();
+    }
+
+    function limparProduto() {
+        document.getElementById("pId").value = "";
+        document.getElementById("pNome").value = "";
+        document.getElementById("pQtd").value = "";
+        document.getElementById("pPreco").value = "";
+        document.getElementById("pIdVendedor").value = "";
+    }
+
+    // --- LÓGICA RELACIONAMENTOS ---
+    function consultarRelacionamento() {
+        let idVendedor = parseInt(document.getElementById("rIdVendedor").value);
+        let tbody = document.querySelector("#tabelaRelacionamento tbody");
+        tbody.innerHTML = "";
+
+        let filtrados = dbProdutos.filter(p => p.idVendedor === idVendedor);
+        if(filtrados.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: #da3633;">Nenhum produto encontrado para este vendedor.</td></tr>`;
+            return;
+        }
+
+        filtrados.forEach(p => {
+            let row = `<tr><td>${p.id}</td><td>${p.nome}</td><td>${p.qtd}</td><td>R$ ${p.preco.toFixed(2)}</td></tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    // Inicializa a tabela ao carregar
+    window.onload = () => {
+        atualizarTabelaVendedoresUI();
+    };
+</script>
+
+</body>
+</html>
