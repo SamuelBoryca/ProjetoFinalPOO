@@ -6,6 +6,8 @@
 
 ## Autor: Samuel Rodrigues Boryça
 
+## Link do vídeo explicativo no drive: https://drive.google.com/file/d/1q5mH5HVf0ITlcBDpo66SvfdHXmgY7-_r/view?usp=sharing
+
 ## Screenshots
 
 <img width="916" height="422" alt="{CE53EB42-D164-4876-9208-117C329FA8D7}" src="https://github.com/user-attachments/assets/b47be37c-bc85-4f2d-80d4-ec8e5cddd263" />
