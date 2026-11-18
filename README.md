@@ -103,3 +103,5 @@ um guia para construir o projeto em etapas.
 ### 2. Códigos em JAVA:
 Usando o projeto apresentado pelo professor em aula, foi criado um modelo para construir os códigos utilizando IA.
 Foram feitas alterações nos códigos gerados para concertar erros.
+
+Ademais, o vídeo (roteiro, gameplay de fundo, gravação de áudio e edição) foi feito a mão, com exceção das legendas que foram geradas automaticamente.
